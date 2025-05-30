@@ -1,0 +1,20 @@
+token.pickle
+# Python cache
+__pycache__/
+*.py[cod]
+
+# macOS Finder
+.DS_Store
+
+# AWS Chalice deployment history (auto-generated)
+.chalice/deployed.json
+# Chalice deployment build artifacts
+.chalice/deployments/
+
+# Local system or test artifacts
+*.log
+*.pickle
+
+# Temp files or binary objects
+*.swp
+*.bak
