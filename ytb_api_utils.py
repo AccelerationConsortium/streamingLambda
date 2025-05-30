@@ -97,7 +97,7 @@ def create_broadcast_and_bind_stream(cam_name: str,workflow_name: str, privacy_s
     # Set broadcast to start two mins later
     start_time = (datetime.utcnow() + timedelta(minutes=2)).isoformat("T") + "Z"
     formatted_time = datetime.utcnow().strftime("%Y-%m-%d UTC %H:%M")
-    broadcast_title = f"{workflow_name} Livestream @ Acceleration Consortium {cam_name}, {formatted_time}"
+    broadcast_title = f"{workflow_name} stream @AC {cam_name}, {formatted_time}"
     broadcast_description = (
         f"Live camera feed from {workflow_name} stationed in Toronto, ON "
         "at the Acceleration Consortium (AC).\n\n"
