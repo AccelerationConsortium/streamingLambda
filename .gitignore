@@ -6,10 +6,9 @@ __pycache__/
 # macOS Finder
 .DS_Store
 
-# AWS Chalice deployment history (auto-generated)
-.chalice/deployed.json
-# Chalice deployment build artifacts
+# Chalice deployment
 .chalice/deployments/
+.chalice/deployed/
 
 # Local system or test artifacts
 *.log

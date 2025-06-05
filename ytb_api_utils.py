@@ -165,7 +165,7 @@ def create_broadcast_and_bind_stream(cam_name: str,workflow_name: str, privacy_s
                     "description": f"Livestreams for device {workflow_name}"
                 },
                 "status": {
-                    "privacyStatus": "public" # public playlist, not video
+                    "privacyStatus": privacy_status
                 }
             }
         ).execute()
