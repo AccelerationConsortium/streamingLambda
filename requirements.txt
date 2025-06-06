@@ -1,5 +1,6 @@
-google-api-python-client
+chalice
+boto3
 google-auth
 google-auth-oauthlib
 google-auth-httplib2
-boto3
+google-api-python-client
