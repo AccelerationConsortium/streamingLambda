@@ -30,5 +30,8 @@ jobs:
           aws-region: us-east-2
 
       - name: Deploy to AWS
+        env:
+          TOKEN_BUCKET: ${{ secrets.TOKEN_BUCKET }}
+          TOKEN_KEY: ${{ secrets.TOKEN_KEY }}
         run: chalice deploy --stage dev
 

@@ -4,10 +4,7 @@
   "stages": {
     "dev": {
       "api_gateway_stage": "api",
-      "environment_variables": {
-        "TOKEN_BUCKET": "ac-token-youtube-api",
-        "TOKEN_KEY": "token/token.pickle"
-      },
+      "environment_variables": {},
       "manage_iam_role": false,
       "iam_role_arn": "arn:aws:iam::558419974452:role/youtube-stream-dev",
       "iam_policy_file": ".chalice/policy.json"
