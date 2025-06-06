@@ -32,12 +32,3 @@ jobs:
       - name: Deploy to AWS
         run: chalice deploy --stage dev
 
-      - name: Enable Function URL for Lambda
-        run: |
-          aws lambda update-function-url-config \
-            --function-name youtube-stream-dev \
-            --auth-type NONE \
-            --region us-east-2
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
