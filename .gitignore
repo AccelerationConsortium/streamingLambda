@@ -18,5 +18,4 @@ __pycache__/
 *.swp
 *.bak
 
-lambda_policy.json
-get_log.json
+policy.json
