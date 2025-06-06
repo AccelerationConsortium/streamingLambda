@@ -20,6 +20,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
+          pip install google-auth google-auth-httplib2 google-api-python-client
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v2
