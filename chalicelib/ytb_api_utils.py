@@ -9,7 +9,7 @@ SCOPES = ["https://www.googleapis.com/auth/youtube"]
 CHANNEL_ID = "UCHBzCfYpGwoqygH9YNh9A6g"
 
 YOUTUBE = None
-S3_BUCKET = "token-youtube-api"
+S3_BUCKET = "ac-token-youtube-api"
 S3_KEY = "token/token.pickle"
 
 def init_youtube_service():

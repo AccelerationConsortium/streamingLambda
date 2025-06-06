@@ -17,3 +17,6 @@ __pycache__/
 # Temp files or binary objects
 *.swp
 *.bak
+
+lambda_policy.json
+get_log.json
