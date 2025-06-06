@@ -7,7 +7,9 @@
       "environment_variables": {
         "TOKEN_BUCKET": "ac-token-youtube-api",
         "TOKEN_KEY": "token/token.pickle"
-      }
+      },
+      "manage_iam_role": true,
+      "iam_policy_file": ".chalice/policy.json"
     }
   }
 }
