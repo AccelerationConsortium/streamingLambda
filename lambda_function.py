@@ -57,15 +57,21 @@ def lambda_handler(event, context):
                 "body": json.dumps({"status": "created", "result": result})
             }
         else:  # action == "end"
-            ended = end_active_broadcasts_for_device(workflow_name)
+            end_active_broadcasts_for_device(workflow_name)
             return {
                 "statusCode": 200,
                 "body": json.dumps({"status": "ended", "message": f"{workflow_name} ended successfully"})
             }
 
+    except ValueError as ve:
+        logger.exception("Invalid input")
+        return {
+            "statusCode": 400,
+            "body": json.dumps({"error": f"Invalid input: {str(ve)}"})
+        }
     except Exception as e:
         logger.exception("Error in lambda_handler")
         return {
-            "statusCode": 400,
-            "body": json.dumps({"error": f"Invalid JSON or internal error: {str(e)}"})
+            "statusCode": 500,
+            "body": json.dumps({"error": f"Internal server error: {str(e)}"})
         }

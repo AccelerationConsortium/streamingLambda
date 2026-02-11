@@ -32,7 +32,7 @@ cp -r chalicelib dependencies/
 # Create deployment package
 echo "Creating deployment.zip..."
 cd dependencies
-zip -r ../deployment.zip . > /dev/null
+zip -q -r ../deployment.zip .
 cd ..
 
 # Get the size of the deployment package
