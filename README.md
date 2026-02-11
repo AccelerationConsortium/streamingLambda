@@ -8,117 +8,34 @@ This repository provides an AWS Lambda function for automatic YouTube livestream
 
 This method allows you to deploy the Lambda function directly to AWS without requiring Chalice or any special deployment tools. Perfect for users outside the Acceleration Consortium who want to set up their own YouTube streaming Lambda function.
 
-#### Prerequisites
+📖 **[See DEPLOYMENT.md for detailed step-by-step instructions](DEPLOYMENT.md)**
 
-1. AWS Account with Lambda access
-2. YouTube Data API v3 credentials
-3. S3 bucket for storing YouTube API token (token.pickle)
-
-#### Steps
+#### Quick Start
 
 1. **Download the deployment package**
    
    Go to the [Releases](../../releases) page and download the latest `deployment.zip` file.
    
-   Alternatively, build it yourself:
+   Or build it locally:
    ```bash
-   # Clone the repository
    git clone https://github.com/AccelerationConsortium/streamingLambda.git
    cd streamingLambda
-   
-   # Create dependencies directory
-   mkdir dependencies
-   
-   # Install dependencies
-   pip install --target ./dependencies \
-     boto3 \
-     google-api-python-client \
-     google-auth \
-     google-auth-oauthlib \
-     google-auth-httplib2
-   
-   # Copy lambda function and chalicelib
-   cp lambda_function.py dependencies/
-   cp -r chalicelib dependencies/
-   
-   # Create deployment package
-   cd dependencies
-   zip -r ../deployment.zip .
-   cd ..
+   ./build-deployment-zip.sh
    ```
 
-2. **Upload to AWS Lambda**
+2. **Upload to AWS Lambda and Configure**
    
-   - Log in to the [AWS Lambda Console](https://console.aws.amazon.com/lambda)
-   - Click "Create function"
-   - Choose "Author from scratch"
-   - Function name: `youtube-stream` (or your preferred name)
-   - Runtime: Python 3.11
-   - Click "Create function"
-   - In the "Code" section, click "Upload from" → ".zip file"
-   - Upload your `deployment.zip` file
-   - Click "Save"
+   Follow the [detailed deployment guide](DEPLOYMENT.md) for complete instructions on:
+   - Creating IAM roles with proper permissions
+   - Uploading the deployment package
+   - Configuring function settings
+   - Setting up S3 bucket for YouTube token
+   - Creating a Function URL
+   - Testing the function
 
-3. **Configure the Lambda function**
+3. **Use with your monitoring device**
    
-   - **Memory**: Set to at least 512 MB (recommended: 1024 MB)
-   - **Timeout**: Set to at least 30 seconds (recommended: 60 seconds)
-   - **IAM Role**: Ensure the Lambda execution role has permissions to:
-     - Read/write to your S3 bucket (for token.pickle)
-     - CloudWatch Logs (for logging)
-
-4. **Set up S3 bucket for YouTube token**
-   
-   - Create an S3 bucket (e.g., `my-youtube-token-bucket`)
-   - Upload your `token.pickle` file to `token/token.pickle` in the bucket
-   - Update the S3 bucket name in `chalicelib/ytb_api_utils.py` (lines 12-13):
-     ```python
-     S3_BUCKET = "your-bucket-name"
-     S3_KEY = "token/token.pickle"
-     ```
-     Then rebuild and redeploy the zip file.
-
-5. **Create a Function URL (optional but recommended)**
-   
-   - In the Lambda function configuration, go to "Configuration" → "Function URL"
-   - Click "Create function URL"
-   - Auth type: Choose "AWS_IAM" or "NONE" based on your security requirements
-   - Click "Save"
-   - Copy the Function URL for use with your monitoring device
-
-6. **Test the function**
-   
-   Use the Test tab in AWS Lambda Console with this test event:
-   ```json
-   {
-     "body": {
-       "action": "create",
-       "cam_name": "TestCamera",
-       "workflow_name": "TestWorkflow",
-       "privacy_status": "private"
-     }
-   }
-   ```
-
-#### API Usage
-
-The Lambda function accepts POST requests with the following payload:
-
-```json
-{
-  "body": {
-    "action": "create",
-    "cam_name": "Camera1",
-    "workflow_name": "MyWorkflow",
-    "privacy_status": "private"
-  }
-}
-```
-
-- `action`: Either "create" (to start a stream) or "end" (to end active streams)
-- `cam_name`: Name of your camera/device
-- `workflow_name`: Identifier for your workflow (used to group streams)
-- `privacy_status`: "public", "private", or "unlisted" (default: "private")
+   Once deployed, use the Lambda Function URL with your [PiCam device](https://ac-training-lab.readthedocs.io/en/latest/devices/picam.html).
 
 ### Option 2: Deployment via Chalice (For AC organization)
 
