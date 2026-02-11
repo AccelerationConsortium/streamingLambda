@@ -19,3 +19,7 @@ __pycache__/
 *.bak
 
 policy.json
+
+# Deployment artifacts
+deployment.zip
+dependencies/
