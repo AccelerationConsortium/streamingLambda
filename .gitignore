@@ -19,3 +19,9 @@ __pycache__/
 *.bak
 
 policy.json
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Deployment artifacts
+dependencies/
