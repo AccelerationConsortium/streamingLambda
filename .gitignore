@@ -20,5 +20,8 @@ __pycache__/
 
 policy.json
 
+# Jupyter
+.ipynb_checkpoints/
+
 # Deployment artifacts
 dependencies/
